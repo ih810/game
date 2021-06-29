@@ -1,9 +1,10 @@
-class Bird {
+class Dino {
     constructor(){
-        this.x = 150;
-        this.y = 200;
+        this.x = 100;
+        this.y = 380;
         this.width = 20;
         this.height = 20;
+        this.color = 'green';
     }
     update(){
         if(this.y > canvas.height - this.height){
@@ -15,19 +16,27 @@ class Bird {
         }
 
         if(spacePressed){
-            this.flop();
+            this.jump();
         }
         
-        this.y ++;
+        if(ctrlPressed){
+            this.crouch();
+        }
+
+        this.y += 4 ;
     }
 
     draw(){
-        ctx.fillstyle = '#000';
+        ctx.fillstyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
-    flop(){
-        this.y -= 2;
+    jump(){
+        this.y -= 10;
     }
+    crouch(){
+        this.y += this.height/2;
+    }
+
 }
-const bird = new Bird();
+const dino = new Dino();
